@@ -1,0 +1,45 @@
+{% extends '../base.html' %} 
+
+{% block title %}Create{%endblock %} 
+
+{% block content %}
+
+<div class="container-md">
+  <div class="row justify-content-md-center">
+    <div class="col-md">
+      <div class="card">
+        <h5 class="card-header">
+          <i class="fas fa-fingerprint"></i> UUID Generator
+        </h5>
+        <div class="card-body">
+          <form action="{% url 'create' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group input-group">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+              <input
+                type="text"
+                name="user_name"
+                class="form-control"
+                placeholder="Username"
+                required
+              />
+              <button class="btn btn-success" type="submit">
+                <i class="fas fa-plus"></i> Add
+              </button>
+            </div>
+          </form>
+
+          {% if user_uuid %}
+          <br />
+          <div class="alert alert-success" role="alert">
+            The generated UUID for <b>{{ user_name }}</b> :
+            <b>{{ user_uuid }}</b>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
